@@ -19,7 +19,6 @@ function downloadSourceFromRepo(){
         git config user.name nginx && \
         git config user.email nginx@tonicforhealth.com
         GIT_RESULT="$?"
-        cp /tmp/parameters.default.yml ./app/config/parameters.yml
     else
         git gc --prune=now && git reset && git fetch --all && git checkout --force ${BRANCH_OR_TAG_NAME} && git pull -f
         GIT_RESULT="$?"
@@ -28,7 +27,7 @@ function downloadSourceFromRepo(){
 }
 
 function downloadVendor(){
-    composer install
+    composer install -n
 }
 
 function prepareResourceAndData(){

@@ -2,10 +2,12 @@ incident-web:
   image: smebberson/alpine-nginx
   ports:
     - 8080:80
+    - 808:808
   links:
     - incident-web-fpm:web
   volumes:
     - ./nginx/health-checker-incident.conf:/etc/nginx/conf.d/default.conf:ro
+    - ./nginx/health-checker-incident-hook.conf:/etc/nginx/conf.d/health-checker-incident-hook.conf:ro
   volumes_from:
     - incident-web-fpm
 
@@ -19,4 +21,5 @@ incident-web-fpm:
 incident-web-data:
   image: busybox
   volumes:
+    - ./config/parameters.yml:/var/www/health-checker-incident/app/config/parameters.yml:ro
     - /var/www/health-checker-incident/app/data

@@ -18,6 +18,8 @@ RUN \
                curl \
                git \
                php \
+               php-iconv \
+               php-zlib \
                php-ctype \
                php-json \
                php-openssl \
@@ -44,8 +46,6 @@ RUN \
 
 COPY		init-project.sh ${CONTAINER_BIN_DIR}/
 
-COPY		config/parameters.default.yml /tmp/parameters.default.yml
-
 RUN         chmod +x ${CONTAINER_BIN_DIR}/init-project.sh
 
 WORKDIR     /var/www/${CONTAINER_WORKDIR_NAME}
@@ -63,4 +63,4 @@ EXPOSE      9000
 
 USER        root
 
-CMD         ["/bin/bash","-c","init-project.sh init && /usr/bin/php-fpm --nodaemonize"]
+CMD         ["/bin/bash","-c","su nginx -c 'init-project.sh init' && /usr/bin/php-fpm --nodaemonize"]
