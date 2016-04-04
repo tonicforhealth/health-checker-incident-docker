@@ -3,3 +3,4 @@
 /phpunit.xml
 /.idea
 /config/parameters.yml
+/docker-compose.*.ext.yml
