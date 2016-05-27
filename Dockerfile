@@ -6,7 +6,7 @@ ENV         CONTAINER_BIN_DIR  /var/lib/health_board/bin
 ENV         PATH               ${CONTAINER_BIN_DIR}/:$PATH
 ENV         CONTAINER_ENV DEV   # TEST, DEV, PROD, ALL
 ARG         BRANCH_OR_TAG_NAME
-ENV         BRANCH_OR_TAG_NAME ${BRANCH_OR_TAG_NAME:-v0.1.2}
+ENV         BRANCH_OR_TAG_NAME ${BRANCH_OR_TAG_NAME:-v0.1.3}
 ARG         GIT_REPO_URL_LINK
 ENV         GIT_REPO_URL_LINK ${GIT_REPO_URL_LINK:-https://github.com/tonicforhealth/health-checker-incident.git}
 ENV         PHP_DATE_TIMEZONE=Europe\\/Kiev \
