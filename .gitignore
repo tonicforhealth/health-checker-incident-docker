@@ -4,3 +4,5 @@
 /.idea
 /config/parameters.yml
 /docker-compose.*.ext.yml
+/nginx/prod
+/nginx/nginx-site.yml
