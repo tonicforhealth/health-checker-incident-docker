@@ -6,7 +6,8 @@ incident-web:
     - incident-web-fpm:web
   volumes_from:
     - incident-web-fpm
-
+  volumes:
+    - ./nginx/health-checker-incident.conf:/etc/nginx/conf.d/health-checker-incident.conf
 incident-web-fpm:
   build: .
   ports:
