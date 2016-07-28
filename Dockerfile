@@ -6,7 +6,7 @@ ENV         CONTAINER_BIN_DIR  /var/lib/health_board/bin
 ENV         PATH               ${CONTAINER_BIN_DIR}/:$PATH
 ENV         CONTAINER_ENV DEV   # TEST, DEV, PROD, ALL
 ARG         BRANCH_OR_TAG_NAME
-ENV         BRANCH_OR_TAG_NAME ${BRANCH_OR_TAG_NAME:-v0.1.4}
+ENV         BRANCH_OR_TAG_NAME ${BRANCH_OR_TAG_NAME:-v0.1.5}
 ARG         GIT_REPO_URL_LINK
 ENV         GIT_REPO_URL_LINK ${GIT_REPO_URL_LINK:-https://github.com/tonicforhealth/health-checker-incident.git}
 ENV         PHP_DATE_TIMEZONE=Europe\\/Kiev \
@@ -42,7 +42,8 @@ RUN         curl -sS https://getcomposer.org/installer \
 
 RUN \
             addgroup -g 83 www-data && \
-            adduser -G www-data -u 100 -D nginx
+            adduser -G www-data -u 100 -D nginx && \
+            sed -i 's/:\/home\/ngi$/\/bin\/bash/g' /etc/passwd #fix adduser bug
 
 COPY		init-project.sh ${CONTAINER_BIN_DIR}/
 
